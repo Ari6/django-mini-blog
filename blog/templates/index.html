@@ -1,12 +1,28 @@
 {% extends "base.html" %}
 {% block title %} <title>Index</title> {% endblock %}
 {% block content %}
-  <h1>Mini Blog Index</h1>
-  <p>Welcome to mini blog, a website developed by <em>Ari</em>!</p>
-  {% if posts %}
-  <p> New posts: </p>
-  <ul>
-    <li><a href=""> </a></li>
-  </ul>
-  {% endif %}
+	<h1>Mini Blog Index</h1>
+	<p>Welcome to mini blog, a website developed by <em>Ari</em>!</p>
+	{% if posts %}
+	<div class="container-fluid">
+		<p> New posts: </p>
+		{% for post in posts %}
+		{% if forloop.counter0|divisibleby:"3" %}
+			<div class="row">
+		{% endif %}
+			<div class="card col-sm">
+				<div class="card-body">
+					<h3 class="card-title">
+				  		<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+					</h3>
+					<p class="card-text"> {{ post.content }} </p>
+					<a href="{{ post.get_absolute_url }}" class="btn btn-primary">Detail</a>
+				</div>
+			</div>
+		{% if forloop.counter0|divisibleby:"2" and forloop.counter0 != 0 %}
+			</div>
+		{% endif %}
+		{% endfor %}
+	</div>
+{% endif %}
 {% endblock %}

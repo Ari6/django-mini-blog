@@ -2,13 +2,25 @@
 {% block content %}
 <h1> Post </h1>
 {% if object %}
-	<p>Title: {{ object.title }}</p>
-	<p>Content: {{object.content | linebreaks}}</p>
+	<div class="card">
+		<div class="card-body">
+			<h3 class="card-title">
+				Title: {{ object.title }}
+			</h3>
+			Content: {{object.content | linebreaks}}
+		</div>
+	</div>
 	{% if comments %}
+			<p> Comments : </p>
 			{% for comment in comments %}
-				<div>
-					<a href="{{ comment.get_absolute_url }}">{{ comment.title}}</a>
-				{{ comment.comment | linebreaks }}
+				<div class="card">
+					<div class="card-body">
+						<h3 class="card-title">
+							<a href="{{ comment.get_absolute_url }}">{{ comment.title}}</a>
+						</h3>
+						{{ comment.comment | linebreaks }}
+					</div>
+				</div>
 			{% endfor %}
 	{% else %}
 		<p>There is no comment.</p>

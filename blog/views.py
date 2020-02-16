@@ -72,10 +72,10 @@ class CommentCreateView(CreateView):
     model = Comment
     fields = ['title', 'comment']
 
-    def get_context_data(self, **kwargs):
-        self.extra_context = super(CommentCreateView, self).get_context_data(**kwargs)
-        self.extra_context['post'] = get_object_or_404(Post, id=self.kwargs['pk'])
-        return self.extra_context
+    #def get_context_data(self, **kwargs):
+    #    self.extra_context = super(CommentCreateView, self).get_context_data(**kwargs)
+    #    self.extra_context['post'] = get_object_or_404(Post, id=self.kwargs['pk'])
+    #    return self.extra_context
 
     def form_valid(self, form):
         form.instance.author = self.request.user
