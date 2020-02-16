@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1> Comment </h1>
+{% if object %}
+	<p>Title: {{ object.title }}</p>
+	<p>Posted on: {{ object.comment_date }}</p>
+	<p>Content: {{ object.comment | linebreaks }}</p>
+	<p>Author: {{ object.author }}<p>
+{% else %}
+	<p> There is no comment.</p>
+{% endif %}
+{% endblock %}

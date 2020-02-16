@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h1> Post </h1>
+{% if object %}
+	<p>Title: {{ object.title }}</p>
+	<p>Content: {{object.content | linebreaks}}</p>
+	{% if comments %}
+			{% for comment in comments %}
+				<div>
+					<a href="{{ comment.get_absolute_url }}">{{ comment.title}}</a>
+				{{ comment.comment | linebreaks }}
+			{% endfor %}
+	{% else %}
+		<p>There is no comment.</p>
+	{% endif %}
+		<p><a href="{% url 'comment-create' object.pk%}"> Post a comment </a></p>
+{% else %}
+	<p> The post does not exist.
+{% endif %}
+{% endblock %}

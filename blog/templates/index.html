@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} <title>Index</title> {% endblock %}
+{% block content %}
+  <h1>Mini Blog Index</h1>
+  <p>Welcome to mini blog, a website developed by <em>Ari</em>!</p>
+  {% if posts %}
+  <p> New posts: </p>
+  <ul>
+    <li><a href=""> </a></li>
+  </ul>
+  {% endif %}
+{% endblock %}
