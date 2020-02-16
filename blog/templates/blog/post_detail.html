@@ -25,7 +25,7 @@
 	{% else %}
 		<p>There is no comment.</p>
 	{% endif %}
-		<p><a href="{% url 'comment-create' object.pk%}"> Post a comment </a></p>
+		<p><a href="{% url 'comment-create' object.pk %}"> Post a comment </a></p>
 {% else %}
 	<p> The post does not exist.
 {% endif %}

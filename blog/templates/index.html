@@ -4,13 +4,13 @@
 	<h1>Mini Blog Index</h1>
 	<p>Welcome to mini blog, a website developed by <em>Ari</em>!</p>
 	{% if posts %}
-	<div class="container-fluid">
 		<p> New posts: </p>
+		<div class="container-fluid">
 		{% for post in posts %}
 		{% if forloop.counter0|divisibleby:"3" %}
 			<div class="row">
 		{% endif %}
-			<div class="card col-sm">
+			<div class="card col-sm-4">
 				<div class="card-body">
 					<h3 class="card-title">
 				  		<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
@@ -23,6 +23,6 @@
 			</div>
 		{% endif %}
 		{% endfor %}
-	</div>
+		</div>
 {% endif %}
 {% endblock %}

@@ -3,11 +3,26 @@
 {% block content %}
 	<h1>Author list</h1>
 	{% if  authors %}
-		<ul>
+		<div class="container-fluid">
 			{% for author in authors %}
-				<li> <a href="{{ author.get_absolute_url }}"> {{ author.username }}</a></li>
+				{% if forloop.counter0|divisibleby:'3' %}
+					<div class="row">
+				{% endif %}
+				<div class="card col-sm-4">
+					<div class="card-body">
+						<div class="card-title"> 
+							<a href="{{ author.get_absolute_url }}"> {{ author.username }}</a>
+						</div>
+						<div class="card-text">
+							<p>author.bio</p>
+						</div>
+					</div>
+				</div>
+				{% if forloop.counter0|divisibleby:'2' and forloop.counter0 != 0 %}
+					</div>
+				{% endif %}
 			{% endfor %}
-		</ul>
+		</div>
 	{% else %}
 		<p> There is no author. </p>
 	{% endif %}
