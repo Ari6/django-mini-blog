@@ -7,9 +7,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin, \
 PermissionRequiredMixin
 from .models import Author, Post, Comment
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import PostCreateForm
+from .forms import PostCreateForm, AuthorCreateForm
 
 from extra_views import CreateWithInlinesView, InlineFormSet
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -76,3 +77,9 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.post = get_object_or_404(Post, id=self.kwargs['pk'])
         return super().form_valid(form)
+
+class AuthorCreateView(CreateView):
+    model = Author
+    form_class = AuthorCreateForm
+    #fields = ['username', 'password1', 'password2', 'bio']
+    template_name = 'blog/author_create.html'
