@@ -68,6 +68,10 @@ TEMPLATES = [
     },
 ]
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
 WSGI_APPLICATION = 'miniblog.wsgi.application'
 
 
@@ -124,3 +128,7 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/blog'
 
 AUTH_USER_MODEL = 'blog.Author'
+
+#For files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

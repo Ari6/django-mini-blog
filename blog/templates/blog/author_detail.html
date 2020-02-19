@@ -3,7 +3,7 @@
 <h1> Authors </h1>
 {% if object %}
 	<p>Name: {{ object.username }}</p>
-	<p>Bio: {{object.bio}}</p>
+	<p>Bio: {{object.bio|linebreaks}}</p>
 	{% if posts %}
 		<ul>
 			{% for post in posts %}
@@ -11,9 +11,10 @@
 			{% endfor %}
 		</ul>
 	{% else %}
-		<p> There is no post by this author, </p>
+		<p> There is no post by this author. </p>
 	{% endif %}
 {% else %}
 	<p>There is no author,</p>
 {% endif %}
+<div><a href="{% url 'author-edit' object.pk %}"> Edit </a></div>
 {% endblock %}

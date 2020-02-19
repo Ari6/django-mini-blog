@@ -7,6 +7,7 @@ from django.urls import reverse
 # Create your models here.
 class Author(AbstractUser):
     bio = models.TextField(blank=True, null=True)
+    pic = models.ImageField(blank=True, null=True, upload_to='')
 
     class Meta:
         verbose_name = 'Author'
@@ -16,6 +17,9 @@ class Author(AbstractUser):
         
     def get_absolute_url(self):
         return reverse('author-detail', args=[str(self.id)])
+
+    def get_pic_url(self):
+        return settings.MEDIA_URL + str(self.pic)
 
 class Post(models.Model):
     title = models.CharField(max_length=200)

@@ -10,11 +10,16 @@
 				{% endif %}
 				<div class="card col-sm-4">
 					<div class="card-body">
+						{% if author.pic %}
+							<img src="{{ author.get_pic_url }}" class="img-thumbnail">
+						{% else %}
+							<img src="{{ MEDIA_URL }}/no-image.png" class="img-thumbnail">
+						{% endif %}
 						<div class="card-title"> 
 							<a href="{{ author.get_absolute_url }}"> {{ author.username }}</a>
 						</div>
 						<div class="card-text">
-							<p>author.bio</p>
+							<p>{{ author.bio }}</p>
 						</div>
 					</div>
 				</div>

@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, \
 PermissionRequiredMixin
 from .models import Author, Post, Comment
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import PostCreateForm, AuthorCreateForm
+from .forms import PostCreateForm, AuthorCreateForm, AuthorUpdateForm
 
 from extra_views import CreateWithInlinesView, InlineFormSet
 from django.contrib.auth.forms import UserCreationForm
@@ -81,5 +81,9 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
 class AuthorCreateView(CreateView):
     model = Author
     form_class = AuthorCreateForm
-    #fields = ['username', 'password1', 'password2', 'bio']
     template_name = 'blog/author_create.html'
+
+class AuthorEditView(UpdateView):
+    model = Author
+    form_class = AuthorUpdateForm
+    template_name = 'blog/author_edit.html'

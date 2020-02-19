@@ -2,6 +2,8 @@ from django import forms
 from .models import Author, Post, Comment
 from django.contrib import admin
 from django.contrib.auth import forms as auth_forms
+from django.core.files.storage import default_storage
+
 
 class PostCreateForm(forms.Form):
     title = forms.CharField(max_length=200,  required=True)
@@ -12,14 +14,15 @@ class CommentCreateForm(forms.Form):
     comment = forms.CharField(widget=forms.Textarea)
 
 class AuthorCreateForm(auth_forms.UserCreationForm):
-    username = forms.CharField(max_length=10, required=True)
-    password1 = forms.CharField(widget=forms.PasswordInput, required=True)
-    password2 = forms.CharField(widget=forms.PasswordInput, required=True)
-    bio = forms.CharField(widget=forms.Textarea)
+    #username = forms.CharField(max_length=10, required=True)
+    #password1 = forms.CharField(widget=forms.PasswordInput, required=True)
+    #password2 = forms.CharField(widget=forms.PasswordInput, required=True)
+    #bio = forms.CharField(widget=forms.Textarea)
+    #picture = forms.ImageField()
 
     class Meta:
         model = Author
-        fields = ('username', 'password1', 'password2', 'bio')
+        fields = ('username', 'password1', 'password2', 'bio', 'pic')
 
     def clean_password(self):
         password1 = self.cleaned_data.get('password1')
@@ -34,3 +37,8 @@ class AuthorCreateForm(auth_forms.UserCreationForm):
         if commit:
             author.save()
         return author
+
+class AuthorUpdateForm(auth_forms.UserChangeForm):
+    class Meta:
+        model = Author
+        fields = ('username', 'bio', 'pic')
