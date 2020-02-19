@@ -13,7 +13,8 @@
 						{% if author.pic %}
 							<img src="{{ author.get_pic_url }}" class="img-thumbnail">
 						{% else %}
-							<img src="{{ MEDIA_URL }}/no-image.png" class="img-thumbnail">
+							{% load static %}
+							<img src="{% static "no-image.png" %}" class="img-thumbnail">
 						{% endif %}
 						<div class="card-title"> 
 							<a href="{{ author.get_absolute_url }}"> {{ author.username }}</a>
