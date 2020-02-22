@@ -5,7 +5,7 @@
 	{% if  authors %}
 		<div class="container-fluid">
 			{% for author in authors %}
-				{% if forloop.counter0|divisibleby:'3' %}
+				{% if forloop.counter|divisibleby:'4' or forloop.counter == 1 %}
 					<div class="row">
 				{% endif %}
 				<div class="card col-sm-4">
@@ -24,7 +24,7 @@
 						</div>
 					</div>
 				</div>
-				{% if forloop.counter0|divisibleby:'2' and forloop.counter0 != 0 %}
+				{% if forloop.counter|divisibleby:'3' %}
 					</div>
 				{% endif %}
 			{% endfor %}
